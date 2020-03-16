@@ -5,6 +5,7 @@ import uk.adthena.shoppingbasket.ItemType.ItemType
 object ItemType extends Enumeration {
   type ItemType = Value
   val Soup, Bread, Milk, Apple = Value
+  def withNameOpt(s: String): Option[ItemType] = values.find(_.toString == s)
 
 }
 
