@@ -8,9 +8,9 @@ class ShoppingBasketSpec extends FlatSpec with GivenWhenThen {
     object ShoppingApp extends ShoppingBasket with DiscountOnPrice
      import ShoppingApp._
     Given("The shopping basket has Apple, Milk and Bread")
-      addToBasket(Item(ItemType.Apple, 1.00))
-      addToBasket(Item(ItemType.Milk, 1.30))
-      addToBasket(Item(ItemType.Bread, 0.80))
+      val items = Array("Apple", "Milk", "Bread")
+      addToBasket(items)
+
     When("checkout")
     val totalPrice = s"£${"%.2f".format(checkout())}"
     Then(" expected Total price should be £3.00")
@@ -22,9 +22,8 @@ class ShoppingBasketSpec extends FlatSpec with GivenWhenThen {
     object ShoppingApp extends ShoppingBasket
     import ShoppingApp._
     Given("The shopping basket has Apple, Milk and Bread")
-    addToBasket(Item(ItemType.Apple, 1.00))
-    addToBasket(Item(ItemType.Milk, 1.30))
-    addToBasket(Item(ItemType.Bread, 0.80))
+    val items = Array("Apple" , "Milk", "Bread")
+    addToBasket(items)
     When("checkout")
     val totalPrice = s"£${"%.2f".format(checkout())}"
     Then(" expected Total price should be £3.10")
@@ -36,16 +35,8 @@ class ShoppingBasketSpec extends FlatSpec with GivenWhenThen {
     object ShoppingApp extends ShoppingBasket with DiscountOnPrice
     import ShoppingApp._
     Given("The shopping basket has six tin of Soup and four loaf of bread")
-      addToBasket(Item(ItemType.Soup, 0.65))
-      addToBasket(Item(ItemType.Soup, 0.65))
-      addToBasket(Item(ItemType.Soup, 0.65))
-      addToBasket(Item(ItemType.Soup, 0.65))
-      addToBasket(Item(ItemType.Soup, 0.65))
-      addToBasket(Item(ItemType.Soup, 0.65))
-      addToBasket(Item(ItemType.Bread, 0.80))
-      addToBasket(Item(ItemType.Bread, 0.80))
-      addToBasket(Item(ItemType.Bread, 0.80))
-      addToBasket(Item(ItemType.Bread, 0.80))
+      val items = Array("Soup", "Soup","Soup", "Soup","Soup", "Soup","Bread", "Bread","Bread", "Bread")
+      addToBasket(items)
     When("checkout")
     val totalPrice = s"£${"%.2f".format(checkout())}"
     Then("Total price should £5.90")
@@ -57,11 +48,8 @@ class ShoppingBasketSpec extends FlatSpec with GivenWhenThen {
     object ShoppingApp extends ShoppingBasket with DiscountOnPrice
     import ShoppingApp._
     Given("The shopping has four loaf of bread and one apple")
-    addToBasket(Item(ItemType.Apple, 1.00))
-    addToBasket(Item(ItemType.Bread, 0.80))
-    addToBasket(Item(ItemType.Bread, 0.80))
-    addToBasket(Item(ItemType.Bread, 0.80))
-    addToBasket(Item(ItemType.Bread, 0.80))
+    val items = Array("Apple", "Bread", "Bread", "Bread", "Bread")
+    addToBasket(items)
     When("checkout")
     val totalPrice = s"£${"%.2f".format(checkout())}"
     Then("Total price should £4.10")
@@ -73,11 +61,8 @@ class ShoppingBasketSpec extends FlatSpec with GivenWhenThen {
     object ShoppingApp extends ShoppingBasket with DiscountOnPrice
     import ShoppingApp._
     Given("The shopping has two loaf of bread, two tin of soup and one apple")
-    addToBasket(Item(ItemType.Apple, 1.00))
-    addToBasket(Item(ItemType.Soup, 0.65))
-    addToBasket(Item(ItemType.Soup, 0.65))
-    addToBasket(Item(ItemType.Bread, 0.80))
-    addToBasket(Item(ItemType.Bread, 0.80))
+    val items = Array("Apple", "Soup","Soup", "Bread","Bread")
+    addToBasket(items)
     When("checkout")
     val totalPrice = s"£${"%.2f".format(checkout())}"
     Then("Total price should £3.40")
@@ -89,16 +74,8 @@ class ShoppingBasketSpec extends FlatSpec with GivenWhenThen {
     object ShoppingApp extends ShoppingBasket
     import ShoppingApp._
     Given("The shopping basket has six tin of Soup and four loaf of bread")
-    addToBasket(Item(ItemType.Soup, 0.65))
-    addToBasket(Item(ItemType.Soup, 0.65))
-    addToBasket(Item(ItemType.Soup, 0.65))
-    addToBasket(Item(ItemType.Soup, 0.65))
-    addToBasket(Item(ItemType.Soup, 0.65))
-    addToBasket(Item(ItemType.Soup, 0.65))
-    addToBasket(Item(ItemType.Bread, 0.80))
-    addToBasket(Item(ItemType.Bread, 0.80))
-    addToBasket(Item(ItemType.Bread, 0.80))
-    addToBasket(Item(ItemType.Bread, 0.80))
+    val items = Array("Soup", "Soup","Soup", "Soup","Soup", "Soup","Bread", "Bread","Bread", "Bread")
+    addToBasket(items)
     When("checkout")
     val totalPrice = s"£${"%.2f".format(checkout())}"
     Then("Total price should £7.10")

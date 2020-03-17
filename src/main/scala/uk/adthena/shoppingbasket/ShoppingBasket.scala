@@ -12,9 +12,22 @@ object ItemType extends Enumeration {
 case class Item(itemType: ItemType, price: BigDecimal)
 
 trait ShoppingBasket {
+
   private var items: List[Item] = List.empty
 
-  def addToBasket(item: Item) = items = item :: items
+  def addToBasket(args: Array[String]): Unit = {
+    args.foreach{
+      item => item match {
+        case "Soup" =>  add(Item(ItemType.Soup, 0.65))
+        case "Bread" => add(Item(ItemType.Bread, 0.80))
+        case "Milk"  => add(Item(ItemType.Milk, 1.30))
+        case "Apple" => add(Item(ItemType.Apple, 1.00))
+        case _ => throw new IllegalArgumentException(s"Unsupported Item type $item")
+      }
+    }
+  }
+
+  private def add(item: Item) = items = item :: items
 
   def calculateAppleItems(groupedItems: List[Item]) = groupedItems.foldLeft(BigDecimal(0)) { (acc, item) => acc + item.price }
   def calculateBreadItems(groupedItems: List[Item], soups: List[Item]) = groupedItems.foldLeft(BigDecimal(0)) { (acc, item) => acc + item.price }
