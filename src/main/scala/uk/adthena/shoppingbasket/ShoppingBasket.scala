@@ -29,12 +29,12 @@ trait ShoppingBasket {
 
   private def add(item: Item) = items = item :: items
 
-  protected def totalPrice() = items.foldLeft(BigDecimal(0)) { (acc, item) => acc + item.price }
+  protected def subTotal() = items.foldLeft(BigDecimal(0)) { (acc, item) => acc + item.price }
 
   def checkout(): BigDecimal = {
-    println(s"Subtotal: £${"%.2f".format(totalPrice())}")
+    println(s"Subtotal: £${"%.2f".format(subTotal())}")
     println("(No offers available)")
-    totalPrice
+    subTotal
   }
 }
 
@@ -42,7 +42,7 @@ trait DiscountOnPrice {
   self: ShoppingBasket =>
 
   override def checkout(): BigDecimal = {
-    println(s"Subtotal: £${"%.2f".format(totalPrice())}")
+    println(s"Subtotal: £${"%.2f".format(subTotal())}")
     items.groupBy(_.itemType).map { case (key, groupedItems) => key match {
       //Apple
       case ItemType.Apple => calculateAppleItems(groupedItems)
